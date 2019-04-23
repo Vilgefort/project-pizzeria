@@ -1,7 +1,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
-  'use strict';
+  ('use strict');
 
   const select = {
     templateOf: {
@@ -45,7 +45,7 @@
       defaultValue: 1,
       defaultMin: 1,
       defaultMax: 9,
-    }
+    },
   };
 
   const templates = {
@@ -58,64 +58,63 @@
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
+      thisProduct.getElements();
+      thisProduct.initAccordion();
 
-      console.log("new product: ", thisProduct);
+      console.log('new product: ', thisProduct);
     }
+
     renderInMenu() {
-      const thisProduct = this;
-      //generate HTML based on template
-      const generatedHTML = templates.menuProduct(thisProduct.data);
-      // create element using function below
-      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
-      // find memu container
-      const menuContainer = document.querySelector(select.containerOf.menu);
-      //add element to menu
+      const thisProduct = this; //generate HTML based on template
+
+      const generatedHTML = templates.menuProduct(thisProduct.data); // create element using function below
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML); // find memu container
+      const menuContainer = document.querySelector(select.containerOf.menu); //add element to menu
       menuContainer.appendChild(thisProduct.element);
     }
-    initAccordion(){
+
+    getElements() {
       const thisProduct = this;
-      /* find the clickable trigger (the element that should react to clicking) */
 
-      /* START: click event listener to trigger */
-
-      /* prevent default action for event */
-
-      /* toggle active class on element of thisProduct */
-
-      /* find all active products */
-
-      /* START LOOP: for each active product */
-
-        /* START: if the active product isn't the element of thisProduct */
-
-          /* remove class active for the active product */
-
-        /* END: if the active product isn't the element of thisProduct */
-
-      /* END LOOP: for each active product */
-
-    /* END: click event listener to trigger */
-  }
-}
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     }
-    
 
+    initAccordion() {
+      const thisProduct = this;
+
+      const trigger = thisProduct.accordionTrigger;
+      trigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+        const activeProducts = document.querySelectorAll('.active');
+
+        for (let activeProduct of activeProducts) {
+          if (activeProduct !== thisProduct.element) {
+            activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+          }
+        }
+      });
+    }
   }
 
   const app = {
     initMenu: function() {
       const thisApp = this;
-      console.log("thisApp.data: ", thisApp.data);
-      for(let productData in thisApp.data.products) {
+      console.log('thisApp.data: ', thisApp.data);
+      for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
     },
     initData: function() {
       const thisApp = this;
       thisApp.data = dataSource;
-      console.log("thisApp: ", thisApp.data);
+      console.log('thisApp: ', thisApp.data);
     },
-    init: function(){
+    init: function() {
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
