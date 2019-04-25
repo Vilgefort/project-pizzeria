@@ -144,13 +144,20 @@
           } else if (!optionSelected && option.default) {
             price -= option.price;
           }
-          if (!thisProduct.params[paramId]) {
-            thisProduct.params[paramId] = {
-              label: param.label,
-              options: {},
-            };
+
+          const images = thisProduct.imageWrapper;
+          const image = '.' + paramId + '-' + optionId;
+          const imageOption = images.querySelector(image);
+          console.log(imageOption);
+          if (optionSelected) {
+            if (imageOption != null) {
+              images.querySelector(image).classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            if (imageOption != null) {
+              images.querySelector(image).classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
-          thisProduct.params[paramId].options[optionId] = option.label;
         } /* END LOOP: for each optionId in param.options */
       }
       //multiply price by ammonut
@@ -158,7 +165,7 @@
       /* set the contents of thisProduct.priceElem to be the value of variable price */
 
       thisProduct.priceElem.innerHTML = price;
-      console.log(thisProduct.priceElem.innerHTML);
+      //console.log(thisProduct.priceElem.innerHTML);
     }
     initAmountWidget() {
       const thisProduct = this;
