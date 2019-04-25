@@ -7,7 +7,7 @@ dataSource.products = {
     price: 9,
     description:
       'Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.',
-    images: ['<img class="active" src="images/doughnut.svg">']
+    images: ['<img class="active" src="images/doughnut.svg">'],
   },
   breakfast: {
     class: 'small',
@@ -24,10 +24,10 @@ dataSource.products = {
           latte: { label: 'Latte', price: 1, default: true },
           cappuccino: { label: 'Cappuccino', price: 1 },
           espresso: { label: 'Espresso', price: 1 },
-          macchiato: { label: 'Macchiato', price: 1 }
-        }
-      }
-    }
+          macchiato: { label: 'Macchiato', price: 1 },
+        },
+      },
+    },
   },
   pizza: {
     name: 'Nonna Albas Pizza',
@@ -43,7 +43,7 @@ dataSource.products = {
       '<img class="toppings-redPeppers" src="images/pizza/red-peppers.svg">',
       '<img class="toppings-greenPeppers" src="images/pizza/green-peppers.svg">',
       '<img class="toppings-mushrooms" src="images/pizza/mushrooms.svg">',
-      '<img class="toppings-basil" src="images/pizza/basil.svg">'
+      '<img class="toppings-basil" src="images/pizza/basil.svg">',
     ],
     params: {
       sauce: {
@@ -51,8 +51,8 @@ dataSource.products = {
         type: 'radios',
         options: {
           tomato: { label: 'Tomato', price: 0, default: true },
-          cream: { label: 'Sour cream', price: 2 }
-        }
+          cream: { label: 'Sour cream', price: 2 },
+        },
       },
       toppings: {
         label: 'Toppings',
@@ -63,8 +63,8 @@ dataSource.products = {
           greenPeppers: { label: 'Green peppers', price: 2, default: true },
           mushrooms: { label: 'Mushrooms', price: 2, default: true },
           basil: { label: 'Fresh basil', price: 2, default: true },
-          salami: { label: 'Salami', price: 3 }
-        }
+          salami: { label: 'Salami', price: 3 },
+        },
       },
       crust: {
         label: 'pizza crust',
@@ -75,16 +75,15 @@ dataSource.products = {
           thick: { label: 'thick', price: 2 },
           cheese: { label: 'cheese in edges', price: 5 },
           wholewheat: { label: 'wholewheat', price: 3 },
-          gluten: { label: 'with extra gluten', price: 0 }
-        }
-      }
-    }
+          gluten: { label: 'with extra gluten', price: 0 },
+        },
+      },
+    },
   },
   salad: {
     name: 'Nonno Albertos Salad',
     price: 9,
-    description:
-      'A delicious salad made of fresh, home-grown products on a crispy lettuce base.',
+    description: 'A delicious salad made of fresh, home-grown products on a crispy lettuce base.',
     images: [
       '<img class="active" src="images/salad/plate.svg">',
       '<img class="ingredients-cucumber" src="images/salad/cucumber.svg" style="z-index: 1;">',
@@ -93,7 +92,7 @@ dataSource.products = {
       '<img class="ingredients-feta" src="images/salad/feta.svg" style="z-index: 4;">',
       '<img class="ingredients-herbs" src="images/salad/herbs.svg" style="z-index: 5;">',
       '<img class="ingredients-cheese" src="images/salad/cheese.svg" style="z-index: 6;">',
-      '<img class="ingredients-pepper" src="images/salad/black-pepper.svg" style="z-index: 7;">'
+      '<img class="ingredients-pepper" src="images/salad/black-pepper.svg" style="z-index: 7;">',
     ],
     params: {
       ingredients: {
@@ -106,9 +105,9 @@ dataSource.products = {
           feta: { label: 'Feta cheese', price: 1 },
           cheese: { label: 'Cheese', price: 1 },
           herbs: { label: 'Fresh herbs', price: 1, default: true },
-          pepper: { label: 'Black pepper', price: 1 }
-        }
-      }
-    }
-  }
+          pepper: { label: 'Black pepper', price: 1 },
+        },
+      },
+    },
+  },
 };
