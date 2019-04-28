@@ -94,7 +94,7 @@
       trigger.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-        const activeProducts = document.querySelectorAll('.active');
+        const activeProducts = document.querySelectorAll('.products.active');
 
         for (let activeProduct of activeProducts) {
           if (activeProduct !== thisProduct.element) {
@@ -148,7 +148,7 @@
           const images = thisProduct.imageWrapper;
           const image = '.' + paramId + '-' + optionId;
           const imageOption = images.querySelector(image);
-          console.log(imageOption);
+          //console.log(imageOption);
           if (optionSelected) {
             if (imageOption != null) {
               images.querySelector(image).classList.add(classNames.menuProduct.imageVisible);
@@ -183,7 +183,7 @@
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
-      //console.log('Amount Widget ', thisWidget);
+      console.log('Amount Widget ', thisWidget);
       //console.log('constructor arguments: ', element);
     }
     getElements(element) {
@@ -200,7 +200,7 @@
       const thisWidget = this;
       const newValue = parseInt(value);
       if (
-        value !== newValue &&
+        newValue != thisWidget.value &&
         newValue >= settings.amountWidget.defaultMin &&
         newValue <= settings.amountWidget.defaultMin
       ) {
@@ -211,6 +211,7 @@
       //1000: Add validation
 
       thisWidget.input.value = thisWidget.value;
+      console.log(thisWidget.input.value);
       //console.log(thisWidget.input.value);
     }
 
