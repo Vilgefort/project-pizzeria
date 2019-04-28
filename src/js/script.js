@@ -162,6 +162,7 @@
       }
       //multiply price by ammonut
       price *= thisProduct.amountWidget.value;
+      console.log(price);
       /* set the contents of thisProduct.priceElem to be the value of variable price */
 
       thisProduct.priceElem.innerHTML = price;
@@ -193,17 +194,12 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-      //console.log(thisWidget.linkDecrease);
     }
 
     setValue(value) {
       const thisWidget = this;
       const newValue = parseInt(value);
-      if (
-        newValue != thisWidget.value &&
-        newValue >= settings.amountWidget.defaultMin &&
-        newValue <= settings.amountWidget.defaultMin
-      ) {
+      if (!isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
         thisWidget.value = newValue;
         thisWidget.announce();
       }
@@ -212,7 +208,6 @@
 
       thisWidget.input.value = thisWidget.value;
       console.log(thisWidget.input.value);
-      //console.log(thisWidget.input.value);
     }
 
     initActions() {
