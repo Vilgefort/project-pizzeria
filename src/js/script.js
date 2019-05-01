@@ -188,7 +188,7 @@
       }
       //multiply price by ammonut
       price *= thisProduct.amountWidget.value;
-      console.log(price);
+      //console.log(price);
       /* set the contents of thisProduct.priceElem to be the value of variable price */
 
       thisProduct.priceElem.innerHTML = price;
@@ -210,7 +210,7 @@
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
-      console.log('Amount Widget ', thisWidget);
+      //console.log('Amount Widget ', thisWidget);
       //console.log('constructor arguments: ', element);
     }
     getElements(element) {
@@ -261,6 +261,37 @@
     }
   }
 
+  class Cart {
+    constructor(element) {
+      const thisCart = this;
+
+      thisCart.products = [];
+
+      thisCart.getElements(element);
+      thisCart.initActions();
+
+      console.log('new Cart ', thisCart);
+    }
+
+    getElements(element) {
+      const thisCart = this;
+
+      thisCart.dom = {};
+      thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
+      //console.log(thisCart);
+    }
+
+    initActions() {
+      const thisCart = this;
+
+      const trigger = thisCart.dom.toggleTrigger;
+      trigger.addEventListener('click', function() {
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+    }
+  }
+
   const app = {
     initMenu: function() {
       const thisApp = this;
@@ -274,6 +305,12 @@
       thisApp.data = dataSource;
       //console.log('thisApp: ', thisApp.data);
     },
+    initCart: function() {
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
 
     init: function() {
       const thisApp = this;
@@ -284,6 +321,7 @@
       //console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
 
