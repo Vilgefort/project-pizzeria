@@ -365,7 +365,7 @@
       const thisCart = this;
       const index = thisCart.products.indexOf(cartProduct);
       thisCart.products.splice(index, 1);
-      cartProduct.dom.wrapper.innerHTML = '';
+      cartProduct.dom.wrapper.remove();
       thisCart.update();
     }
   }
