@@ -10,20 +10,36 @@ export class DatePicker extends BaseWidget {
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
     thisWidget.initPlugin();
+    
   }
 
   initPlugin() {
+    const thisWidget = this;
     thisWidget.minDate = new Date(thisWidget.value);
     console.log(thisWidget.minDate);
-    thisWidget.maxDate = thisWidget.minDate + settings.datePicker.maxDaysInFuture;
+    thisWidget.maxDate = utils.addDays(thisWidget.minDate,14);
+    flatpickr(thisWidget.dom.input, 
+    {
+      defaultDate: thisWidget.minDate,minDate: thisWidget.minDate, maxDate: thisWidget.maxDate,
+      "disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 1);
+
+        }
+    ],
+    "locale": {
+        "firstDayOfWeek": 1 // start week on Monday
+    }
+    });
   }
 
   parseValue(newValue) {
     return newValue;
   }
 
-  isValid(newValue) {
-    return newValue == true;
+  isValid() {
+    return true;
   }
 
   renderValue() {}
