@@ -4,6 +4,7 @@ export class BaseWidget {
 
     thisWidget.dom = {};
     thisWidget.dom.wrapper = wrapperElement;
+    // console.log(thisWidget.dom.wrapper);
     thisWidget.correctValue = initialValue;
   }
 
@@ -35,9 +36,8 @@ export class BaseWidget {
   }
 
   renderValue() {
-    const thisWidget = this;
-
-    //console.log('widget value ', thisWidget.value);
+    const thisWidget = this; // eslint-disable-line
+    console.log('widget value ', thisWidget.value);
   }
 
   announce() {
