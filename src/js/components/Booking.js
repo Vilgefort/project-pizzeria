@@ -66,6 +66,7 @@ export class Booking {
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]) {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        console.log('booking ', bookings, 'eventC', eventsCurrent, 'eventR', eventsRepeat);
       });
   }
 
@@ -74,9 +75,19 @@ export class Booking {
 
     thisBooking.booked = {};
     for (let event of eventsCurrent) {
-      console.log(event);
+
       thisBooking.makeBooked(event.date, event.hour, event.duration, event.table);
-      console.log(event.date, event.hour, event.duration, event.table);
+      //console.log(event.date, event.hour, event.duration, event.table);
+    }
+    for(let booked of bookings) {
+      thisBooking.makeBooked(booked.date, booked.hour, booked.duration, booked.table)
+      console.log(booked.date, booked.hour, booked.duration, booked.table);
+    }
+    for(let eventRepeat of eventsRepeat) {
+      
+      for(let i = 0; i < settings.datePicker.maxDaysInFuture; i++) {
+        thisBooking.makeBooked(utils.dateToStr(utils.addDays(thisBooking.datePicker.minDate, i)), eventRepeat.hour, eventRepeat.duration, eventRepeat.table);
+      }
     }
     console.log(thisBooking.booked);
   }
@@ -87,5 +98,13 @@ export class Booking {
     if (!thisBooking.booked.hasOwnProperty(date)) {
       thisBooking.booked[date] = {};
     }
+    for(let i = 0; i < duration * 2; i++) {
+      if(!thisBooking.booked[date].hasOwnProperty(hours + i* 0.5)) {
+        thisBooking.booked[date][hours + i * 0.5] = [table.toString()];
+      } else {
+        thisBooking.booked[date][hours + i * 0.5].push(table.toString())
+      }
+    }
+
   }
 }
